@@ -6,21 +6,35 @@ void main() {
 
 // Alternative syntac for the main function
 // void main()=>runApp(MyApp());
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
   void answerQuestion() {
-    print('answer choosen');
+    setState(() {
+      questionIndex = questionIndex + 1;
+    });
+
+    print(questionIndex);
   }
 
   @override
   // @override is a declarator - we override the method of the class
   Widget build(BuildContext context) {
-    var question = ['question 1', 'question 2'];
+    var questions = ['question 1', 'question 2'];
 
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(title: Text('My App')),
             body: Column(children: [
-              Text('Text for body'),
+              Text(questions[questionIndex]),
               RaisedButton(
                 child: Text('Answer 1'),
                 onPressed: answerQuestion,
