@@ -47,6 +47,17 @@ class MyAppState extends State<MyApp> {
                 child: Text('Answer 3'),
                 onPressed: () => print('button3'),
               ),
+              Text(
+                'This text show you this bullshit.',
+                style: TextStyle(
+                    height: 2,
+                    fontSize: 10,
+                    fontFamily: 'Raleway',
+                    fontFamilyFallback: <String>[
+                      'Noto Sans CJK SC',
+                      'Noto Color Emoji',
+                    ]),
+              )
             ])));
   }
 }
