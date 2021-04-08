@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,13 +18,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
+  var answerText = '';
 
   void _answerQuestion() {
     setState(() {
       if (questionIndex < 1) {
         questionIndex = questionIndex + 1;
+        answerText = 'answer = ' + questionIndex.toString();
       } else {
         questionIndex = questionIndex - 1;
+        answerText = 'answer = ' + questionIndex.toString();
       }
     });
 
@@ -49,11 +53,16 @@ class _MyAppState extends State<MyApp> {
                 onPressed: _answerQuestion,
               ),
               RaisedButton(
-                child: Text('Answer 3'),
-                onPressed: () => print('this is button3!'),
-              ),
+                  child: Text('Answer 3'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SecondRoute()),
+                    );
+                  }),
+              Answer(answerText),
               Text(
-                'This text show you this bullshit.',
+                answerText,
                 style: TextStyle(
                     height: 2,
                     fontSize: 10,
@@ -64,5 +73,43 @@ class _MyAppState extends State<MyApp> {
                     ]),
               )
             ])));
+  }
+}
+
+class FirstRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Route'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('Open route'),
+          onPressed: () {
+            // Navigate to second route when tapped.
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Navigate back to first route when tapped.
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
   }
 }
