@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  final String answerText;
-  Answer(this.answerText);
+  //final String answerText;
+  final Function selectHandler;
+  Answer(this.selectHandler);
+
   @override
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
         child: TextButton(
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.blueAccent[100]),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           ),
           clipBehavior: Clip.none,
-          child: Text(answerText),
-          onPressed: null,
+          child: Text('Answer 1'),
+          onPressed: selectHandler,
         ));
   }
 }

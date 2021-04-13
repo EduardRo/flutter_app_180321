@@ -44,23 +44,9 @@ class _MyAppState extends State<MyApp> {
             appBar: AppBar(title: Text('My App')),
             body: Column(children: [
               Question(questions[questionIndex]),
-              RaisedButton(
-                child: Text('Answer 1'),
-                onPressed: _answerQuestion,
-              ),
-              RaisedButton(
-                child: Text('Answer 2'),
-                onPressed: _answerQuestion,
-              ),
-              RaisedButton(
-                  child: Text('Answer 3'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SecondRoute()),
-                    );
-                  }),
-              Answer(answerText),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
               Text(
                 answerText,
                 style: TextStyle(
